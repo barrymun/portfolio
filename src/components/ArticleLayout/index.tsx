@@ -1,1 +1,1 @@
-export { default } from "./ArticleLayout"
+export { default } from "./ArticleLayout";

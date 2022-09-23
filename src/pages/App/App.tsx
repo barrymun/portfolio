@@ -1,10 +1,10 @@
 import React, { FC } from "react";
-import { Link } from 'react-router-dom'
-import clsx from 'clsx'
-import { formatDate } from '@/lib/formatDate'
-import Card from '@/components/Card'
-import GitHubIcon from '@/components/SocialIcons/GitHubIcon'
-import LinkedInIcon from '@/components/SocialIcons/LinkedInIcon'
+import { Link } from "react-router-dom";
+import clsx from "clsx";
+import { formatDate } from "@/lib/formatDate";
+import Card from "@/components/Card";
+import GitHubIcon from "@/components/SocialIcons/GitHubIcon";
+import LinkedInIcon from "@/components/SocialIcons/LinkedInIcon";
 import Button from "@/components/Button";
 import Container from "@/components/Container";
 import logoAirbnb from "@/assets/airbnb.svg";
@@ -30,7 +30,7 @@ function MailIcon(props: any) {
         className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
-  )
+  );
 }
 
 function BriefcaseIcon(props: any) {
@@ -53,7 +53,7 @@ function BriefcaseIcon(props: any) {
         className="stroke-zinc-400 dark:stroke-zinc-500"
       />
     </svg>
-  )
+  );
 }
 
 function ArrowDownIcon(props: any) {
@@ -66,15 +66,22 @@ function ArrowDownIcon(props: any) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-function SocialLink({ icon: Icon, ...props }: {href: string, "aria-label": string, icon: Function}) {
+function SocialLink({
+  icon: Icon,
+  ...props
+}: {
+  href: string;
+  "aria-label": string;
+  icon: Function;
+}) {
   return (
     <a className="group -m-1 p-1" {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
     </a>
-  )
+  );
 }
 
 function Newsletter() {
@@ -103,29 +110,29 @@ function Newsletter() {
         </Button>
       </div>
     </form>
-  )
+  );
 }
 
 function Resume() {
   let resume = [
     {
-      company: 'Traitly',
-      title: 'Co-founder & Lead fullstack engineer',
+      company: "Traitly",
+      title: "Co-founder & Lead fullstack engineer",
       logo: logoAirbnb,
-      start: '2016',
+      start: "2016",
       end: {
-        label: 'Present',
+        label: "Present",
         dateTime: new Date().getFullYear(),
       },
     },
     {
-      company: 'Workday',
-      title: 'Software engineer',
+      company: "Workday",
+      title: "Software engineer",
       logo: logoFacebook,
-      start: '2015',
-      end: '2016',
+      start: "2015",
+      end: "2016",
     },
-  ]
+  ];
 
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
@@ -157,8 +164,8 @@ function Resume() {
               >
                 <time dateTime={role.start.dateTime ?? role.start}>
                   {role.start.label ?? role.start}
-                </time>{' '}
-                <span aria-hidden="true">—</span>{' '}
+                </time>{" "}
+                <span aria-hidden="true">—</span>{" "}
                 <time dateTime={role.end.dateTime ?? role.end}>
                   {role.end.label ?? role.end}
                 </time>
@@ -172,7 +179,7 @@ function Resume() {
         <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
       </Button>
     </div>
-  )
+  );
 }
 
 // function Photos() {
@@ -254,5 +261,5 @@ export default function App() {
         </div>
       </Container> */}
     </>
-  )
+  );
 }

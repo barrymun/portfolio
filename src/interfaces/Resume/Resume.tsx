@@ -1,4 +1,3 @@
-interface Resume {
-}
+interface Resume {}
 
 export default Resume;

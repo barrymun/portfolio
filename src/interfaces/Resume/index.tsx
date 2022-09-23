@@ -1,1 +1,1 @@
-export { type default } from "./Resume"
+export { type default } from "./Resume";

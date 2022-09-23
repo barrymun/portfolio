@@ -1,6 +1,6 @@
 import React, { FC } from "react";
-import { Link } from 'react-router-dom'
-import clsx from 'clsx'
+import { Link } from "react-router-dom";
+import clsx from "clsx";
 
 function ChevronRightIcon(props: any) {
   return (
@@ -12,20 +12,34 @@ function ChevronRightIcon(props: any) {
         strokeLinejoin="round"
       />
     </svg>
-  )
+  );
 }
 
-export default function Card({ as: Component = 'div', className, children }: { as: any, Component: FC, className: string, children: React.ReactNode }) {
+export default function Card({
+  as: Component = "div",
+  className,
+  children,
+}: {
+  as: any;
+  Component: FC;
+  className: string;
+  children: React.ReactNode;
+}) {
   return (
     <Component
-      className={clsx(className, 'group relative flex flex-col items-start')}
+      className={clsx(className, "group relative flex flex-col items-start")}
     >
       {children}
     </Component>
-  )
+  );
 }
 
-Card.Link = function CardLink({ children, ...props }: { children: React.ReactNode }) {
+Card.Link = function CardLink({
+  children,
+  ...props
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <>
       <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
@@ -34,24 +48,37 @@ Card.Link = function CardLink({ children, ...props }: { children: React.ReactNod
         <span className="relative z-10">{children}</span>
       </a>
     </>
-  )
-}
+  );
+};
 
-Card.Title = function CardTitle({ as: Component = 'h2', href, children }: { as: any, Component: FC, href: string, children: React.ReactNode }) {
+Card.Title = function CardTitle({
+  as: Component = "h2",
+  href,
+  children,
+}: {
+  as: any;
+  Component: FC;
+  href: string;
+  children: React.ReactNode;
+}) {
   return (
     <Component className="text-base font-semibold tracking-tight text-zinc-800 dark:text-zinc-100">
       {href ? <Card.Link href={href}>{children}</Card.Link> : children}
     </Component>
-  )
-}
+  );
+};
 
-Card.Description = function CardDescription({ children }: { children: React.ReactNode }) {
+Card.Description = function CardDescription({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <p className="relative z-10 mt-2 text-sm text-zinc-600 dark:text-zinc-400">
       {children}
     </p>
-  )
-}
+  );
+};
 
 Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
   return (
@@ -62,27 +89,27 @@ Card.Cta = function CardCta({ children }: { children: React.ReactNode }) {
       {children}
       <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
     </div>
-  )
-}
+  );
+};
 
 Card.Eyebrow = function CardEyebrow({
-  as: Component = 'p',
+  as: Component = "p",
   decorate = false,
   className,
   children,
   ...props
 }: {
-  as: any, 
-  decorate: boolean,
-  className: string,
-  children: React.ReactNode
+  as: any;
+  decorate: boolean;
+  className: string;
+  children: React.ReactNode;
 }) {
   return (
     <Component
       className={clsx(
         className,
-        'relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500',
-        decorate && 'pl-3.5'
+        "relative z-10 order-first mb-3 flex items-center text-sm text-zinc-400 dark:text-zinc-500",
+        decorate && "pl-3.5"
       )}
       {...props}
     >
@@ -96,5 +123,5 @@ Card.Eyebrow = function CardEyebrow({
       )}
       {children}
     </Component>
-  )
-}
+  );
+};
