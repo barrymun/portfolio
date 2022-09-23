@@ -1,4 +1,4 @@
+@import './styles/prism.css';
 @tailwind base;
 @tailwind components;
-@import './styles/prism.css';
 @tailwind utilities;
