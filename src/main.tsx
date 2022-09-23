@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import App from './pages/App'
 import Error from './pages/Error'
+
 import './index.css'
 
 const router = createBrowserRouter([
