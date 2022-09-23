@@ -9,6 +9,7 @@ import Button from "@/components/Button";
 import Container from "@/components/Container";
 import logoAirbnb from "@/assets/airbnb.svg";
 import logoFacebook from "@/assets/facebook.svg";
+import { GITHUB_PROFILE_URI, LINKEDIN_PROFILE_URI, URI_REF, URI_TARGET } from "@/constants";
 
 function MailIcon(props: any) {
   return (
@@ -71,16 +72,21 @@ function ArrowDownIcon(props: any) {
 
 function SocialLink({
   icon: Icon,
+  href,
   ...props
 }: {
+  icon: Function;
   href: string;
   "aria-label": string;
-  icon: Function;
 }) {
+  const onClick = (e: React.MouseEvent<Element, MouseEvent>) => {
+    window.open(href, URI_TARGET, URI_REF);
+  }
+
   return (
-    <a className="group -m-1 p-1" {...props}>
+    <button className="group -m-1 p-1" onClick={onClick} {...props}>
       <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
-    </a>
+    </button>
   );
 }
 
@@ -158,9 +164,8 @@ function Resume() {
               <dt className="sr-only">Date</dt>
               <dd
                 className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start.label ?? role.start} until ${
-                  role.end.label ?? role.end
-                }`}
+                aria-label={`${role.start.label ?? role.start} until ${role.end.label ?? role.end
+                  }`}
               >
                 <time dateTime={role.start.dateTime ?? role.start}>
                   {role.start.label ?? role.start}
@@ -234,14 +239,14 @@ export default function App() {
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink
-              href="https://github.com"
-              aria-label="Follow on GitHub"
-              icon={GitHubIcon}
-            />
-            <SocialLink
-              href="https://linkedin.com"
+              href={LINKEDIN_PROFILE_URI}
               aria-label="Follow on LinkedIn"
               icon={LinkedInIcon}
+            />
+            <SocialLink
+              href={GITHUB_PROFILE_URI}
+              aria-label="Follow on GitHub"
+              icon={GitHubIcon}
             />
           </div>
         </div>
