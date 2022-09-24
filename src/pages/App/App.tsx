@@ -20,7 +20,7 @@ import { render } from "react-dom";
 const IMAGES = [image1, image2, image3, image4, image5];
 const IMAGE_ROTATIONS = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2'];
 const CANVAS_WIDTH = window.innerWidth;
-const SCROLL_SPEED = 1.3;
+const SCROLL_SPEED = 4.3;
 
 // function MailIcon(props: any) {
 //   return (
@@ -224,7 +224,10 @@ function Photo({ imageIndex }: { imageIndex: number }) {
       const newPosition = prevPosition - SCROLL_SPEED;
       // return newPosition < -200 ? CANVAS_WIDTH : newPosition;
       // return ((newPosition / positionDenominator) / IMAGES.length) < -((640 / positionDenominator) / IMAGES.length) ? CANVAS_WIDTH : newPosition;
-      return (newPosition / positionDenominator) < (-640 / positionDenominator) ? CANVAS_WIDTH : newPosition;
+      // return (newPosition / positionDenominator) < (-400 / positionDenominator) ? CANVAS_WIDTH : newPosition;
+      // return (newPosition / positionDenominator) < (-400 + positionDenominator) ? CANVAS_WIDTH : newPosition;
+      // return newPosition < (-300 - (300 * imageIndex)) ? CANVAS_WIDTH : newPosition;
+      return newPosition < -1200 ? CANVAS_WIDTH : newPosition;
     })
   );
 
@@ -241,12 +244,13 @@ function Photo({ imageIndex }: { imageIndex: number }) {
           IMAGE_ROTATIONS[imageIndex % IMAGE_ROTATIONS.length]
         )}
       >
-        <img
+        {imageIndex}
+        {/* <img
           src={IMAGES[imageIndex]}
           alt=""
           sizes="(min-width: 640px) 18rem, 11rem"
           className="absolute inset-0 h-full w-full object-cover"
-        />
+        /> */}
       </div>
     </div>
   )
