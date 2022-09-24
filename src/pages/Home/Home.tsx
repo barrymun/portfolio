@@ -15,7 +15,8 @@ import image2 from "@/assets/image-2.jpg";
 import image3 from "@/assets/image-3.jpg";
 import image4 from "@/assets/image-4.jpg";
 import image5 from "@/assets/image-5.jpg";
-import { GITHUB_PROFILE_URI, LINKEDIN_PROFILE_URI, URI_REF, URI_TARGET } from "@/constants";
+import resumePDF from "@/assets/resume.pdf";
+import { GITHUB_PROFILE_URI, LINKEDIN_PROFILE_URI, URI_REL, URI_TARGET } from "@/constants";
 
 const IMAGES = [image1, image2, image3, image4, image5];
 const IMAGE_ROTATIONS = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2'];
@@ -91,7 +92,7 @@ function SocialLink({
   "aria-label": string;
 }) {
   const onClick = (e: React.MouseEvent<Element, MouseEvent>) => {
-    window.open(href, URI_TARGET, URI_REF);
+    window.open(href, URI_TARGET, URI_REL);
   }
 
   return (
@@ -158,6 +159,10 @@ function Resume() {
     },
   ];
 
+  const onClick = (e: React.MouseEvent<Element, MouseEvent>) => {
+    console.log('HERE')
+  }
+
   return (
     <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -197,10 +202,12 @@ function Resume() {
           </li>
         ))}
       </ol>
-      <Button to="#" variant="secondary" className="group mt-6 w-full">
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      <a href={resumePDF} target={URI_TARGET} rel={URI_REL} download>
+        <Button variant="secondary" className="group mt-6 w-full" onClick={onClick}>
+          Download CV
+          <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+        </Button>
+      </a>
     </div>
   );
 }
