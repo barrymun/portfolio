@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import { createBrowserRouter, BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import App from "./components/App";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
@@ -15,8 +15,35 @@ const router = createBrowserRouter([
   },
 ]);
 
+// ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+//   <App>
+//     <RouterProvider router={router} />
+//   </App>
+// );
+
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <App>
-    <RouterProvider router={router} />
-  </App>
+  <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<App />}>
+          <Route index element={<Home />} />
+          {/* <Route
+            path="about"
+            element={
+              <React.Suspense fallback={<>...</>}>
+                <About />
+              </React.Suspense>
+            }
+          />
+          <Route
+            path="dashboard/*"
+            element={
+              <React.Suspense fallback={<>...</>}>
+                <Dashboard />
+              </React.Suspense>
+            }
+          /> */}
+          <Route path="*" element={<Error />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
 );

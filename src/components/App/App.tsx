@@ -1,7 +1,8 @@
-// import Footer from "@/components/Footer";
 // import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import { Outlet } from "react-router";
 
-export default function App({ children }: { children: React.ReactNode }) {
+export default function App() {
   return (
     <>
       <div className="bg-zinc-50 fixed inset-0 flex justify-center sm:px-8">
@@ -12,9 +13,9 @@ export default function App({ children }: { children: React.ReactNode }) {
       <div className="relative">
         {/* <Header /> */}
         <main>
-          {children}
+          <Outlet />
         </main>
-        {/* <Footer /> */}
+        <Footer />
       </div>
     </>
   )
