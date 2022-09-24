@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider, Route } from "react-router-dom";
+import App from "./components/App";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
 
@@ -15,5 +16,7 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
-  <RouterProvider router={router} />
+  <App>
+    <RouterProvider router={router} />
+  </App>
 );

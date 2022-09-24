@@ -15,7 +15,6 @@ import image3 from "@/assets/image-3.jpg";
 import image4 from "@/assets/image-4.jpg";
 import image5 from "@/assets/image-5.jpg";
 import { GITHUB_PROFILE_URI, LINKEDIN_PROFILE_URI, URI_REF, URI_TARGET } from "@/constants";
-import App from "@/components/App";
 
 const IMAGES = [image1, image2, image3, image4, image5];
 const IMAGE_ROTATIONS = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2'];
@@ -250,7 +249,7 @@ function Photo({ imageIndex }: { imageIndex: number }) {
 export default function Home() {
   const renderPhotos = (_: any, index: number) => <Photo key={index} imageIndex={index} />;  // consistent load times
   return (
-    <App>
+    <>
       {/* <Head>
         <title>
           Spencer Sharp - Software designer, founder, and amateur astronaut
@@ -309,6 +308,6 @@ export default function Home() {
           </div>
         </div>
       </Container> */}
-    </App >
+    </ >
   );
 }
