@@ -1,13 +1,24 @@
-import { createBrowserRouter, BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
+import React from "react";
+import { Routes, Route } from "react-router-dom";
 import Layout from "@/components/Layout";
-import Home from "@/pages/Home";
-import Error from "@/pages/Error";
+import Loading from "@/components/Loading";
+import Error from "@/pages/Error"; // lazy loading not required here
 
+const Home = React.lazy(() => import("@/pages/Home"));
+
+// laxy loading: https://github.com/remix-run/react-router/tree/dev/examples/lazy-loading/src
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<Layout />} >
-        <Route index element={<Home />} />
+        <Route
+          index
+          element={
+            <React.Suspense fallback={<Loading />}>
+              <Home />
+            </React.Suspense>
+          }
+        />
         {/* <Route
             path="about"
             element={
