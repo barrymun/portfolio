@@ -7,8 +7,9 @@ import GitHubIcon from "@/components/SocialIcons/GitHubIcon";
 import LinkedInIcon from "@/components/SocialIcons/LinkedInIcon";
 import Button from "@/components/Button";
 import Container from "@/components/Container";
-import logoAirbnb from "@/assets/airbnb.svg";
-import logoFacebook from "@/assets/facebook.svg";
+import logoTraitly from "@/assets/traitly.jpeg";
+import logoWorkday from "@/assets/workday.jpeg";
+import logoOysterhaven from "@/assets/oysterhaven.jpeg";
 import image1 from "@/assets/image-1.jpg";
 import image2 from "@/assets/image-2.jpg";
 import image3 from "@/assets/image-3.jpg";
@@ -134,7 +135,7 @@ function Resume() {
     {
       company: "Traitly",
       title: "Co-founder & Lead fullstack engineer",
-      logo: logoAirbnb,
+      logo: logoTraitly,
       start: "2016",
       end: {
         label: "Present",
@@ -144,9 +145,16 @@ function Resume() {
     {
       company: "Workday",
       title: "Software engineer",
-      logo: logoFacebook,
+      logo: logoWorkday,
       start: "2015",
       end: "2016",
+    },
+    {
+      company: "Oysterhaven",
+      title: "Windsurfing instructor",
+      logo: logoOysterhaven,
+      start: "2012",
+      end: "2014",
     },
   ];
 
@@ -160,7 +168,7 @@ function Resume() {
         {resume.map((role, roleIndex: number) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-              <img src={role.logo} alt="" className="h-7 w-7" />
+              <img src={role.logo} alt="" className="h-7 w-7 rounded-full" />
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
               <dt className="sr-only">Company</dt>
