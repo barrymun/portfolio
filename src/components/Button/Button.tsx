@@ -11,16 +11,16 @@ const variantStyles = {
 export default function Button({
   variant = "primary",
   className,
-  to,
+  to = null,
   ...props
-}) {
+}: { variant: string, className: string, to: string | null }) {
   className = clsx(
     "inline-flex items-center gap-2 justify-center rounded-md py-2 px-3 text-sm outline-offset-2 transition active:transition-none",
     variantStyles[variant],
     className
   );
 
-  return href ? (
+  return to ? (
     <Link to={to} className={className} {...props} />
   ) : (
     <button className={className} {...props} />
