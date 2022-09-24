@@ -198,7 +198,6 @@ function SocialLink({
 //   );
 // }
 
-
 const useAnimationFrame = (callback: Function) => {
   const requestRef = useRef();
 
@@ -214,44 +213,36 @@ const useAnimationFrame = (callback: Function) => {
 };
 
 function Photo({ imageIndex }: { imageIndex: number }) {
-  // const positionMultiplier = 10 * imageIndex;
-  const positionDenominator = imageIndex + 1;
-  // const positionDenominator = ((imageIndex + 1) / (IMAGES.length));
-  const [position, setPosition] = useState(0);
-
-  useAnimationFrame(() =>
-    setPosition(prevPosition => {
-      const newPosition = prevPosition - SCROLL_SPEED;
-      // return newPosition < -200 ? CANVAS_WIDTH : newPosition;
-      // return ((newPosition / positionDenominator) / IMAGES.length) < -((640 / positionDenominator) / IMAGES.length) ? CANVAS_WIDTH : newPosition;
-      // return (newPosition / positionDenominator) < (-400 / positionDenominator) ? CANVAS_WIDTH : newPosition;
-      // return (newPosition / positionDenominator) < (-400 + positionDenominator) ? CANVAS_WIDTH : newPosition;
-      // return newPosition < (-300 - (300 * imageIndex)) ? CANVAS_WIDTH : newPosition;
-      return newPosition < -1200 ? CANVAS_WIDTH : newPosition;
-    })
-  );
+  // const positionDenominator = imageIndex + 1;
+  // const [position, setPosition] = useState(0);
+  // useAnimationFrame(() =>
+  //   setPosition(prevPosition => {
+  //     const newPosition = prevPosition - SCROLL_SPEED;
+  //     // return newPosition < -200 ? CANVAS_WIDTH : newPosition;
+  //     // return ((newPosition / positionDenominator) / IMAGES.length) < -((640 / positionDenominator) / IMAGES.length) ? CANVAS_WIDTH : newPosition;
+  //     // return (newPosition / positionDenominator) < (-400 / positionDenominator) ? CANVAS_WIDTH : newPosition;
+  //     // return (newPosition / positionDenominator) < (-400 + positionDenominator) ? CANVAS_WIDTH : newPosition;
+  //     // return newPosition < (-300 - (300 * imageIndex)) ? CANVAS_WIDTH : newPosition;
+  //     return newPosition < -1200 ? CANVAS_WIDTH : newPosition;
+  //   })
+  // );
 
   return (
     <div
-      style={{
-        transform: `translateX(${position}px)`,
-      }}
-    // className={`absolute`}
+      // style={{
+      //   transform: `translateX(${position}px)`,
+      // }}
+      className={clsx(
+        'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
+        IMAGE_ROTATIONS[imageIndex % IMAGE_ROTATIONS.length]
+      )}
     >
-      <div
-        className={clsx(
-          'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800 sm:w-72 sm:rounded-2xl',
-          IMAGE_ROTATIONS[imageIndex % IMAGE_ROTATIONS.length]
-        )}
-      >
-        {imageIndex}
-        {/* <img
-          src={IMAGES[imageIndex]}
-          alt=""
-          sizes="(min-width: 640px) 18rem, 11rem"
-          className="absolute inset-0 h-full w-full object-cover"
-        /> */}
-      </div>
+      <img
+        src={IMAGES[imageIndex]}
+        alt=""
+        sizes="(min-width: 640px) 18rem, 11rem"
+        className="absolute inset-0 h-full w-full object-cover"
+      />
     </div>
   )
 }
