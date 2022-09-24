@@ -2,7 +2,7 @@
 import Footer from "@/components/Footer";
 import { Outlet } from "react-router";
 
-export default function App() {
+export default function Layout() {
   return (
     <>
       <div className="bg-zinc-50 fixed inset-0 flex justify-center sm:px-8">

@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import App from "./components/App";
+import Layout from "./components/Layout";
 import Home from "./pages/Home";
 import Error from "./pages/Error";
 
@@ -24,7 +24,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
   <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />}>
+        <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           {/* <Route
             path="about"
