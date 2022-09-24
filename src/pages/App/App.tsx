@@ -217,23 +217,23 @@ function Photo({ imageIndex }: { imageIndex: number }) {
   // const positionMultiplier = 10 * imageIndex;
   const positionDenominator = imageIndex + 1;
   // const positionDenominator = ((imageIndex + 1) / (IMAGES.length));
-  let [position, setPosition] = useState(0);
+  const [position, setPosition] = useState(0);
 
   useAnimationFrame(() =>
     setPosition(prevPosition => {
-      let newPosition = prevPosition - SCROLL_SPEED;
+      const newPosition = prevPosition - SCROLL_SPEED;
       // return newPosition < -200 ? CANVAS_WIDTH : newPosition;
       // return ((newPosition / positionDenominator) / IMAGES.length) < -((640 / positionDenominator) / IMAGES.length) ? CANVAS_WIDTH : newPosition;
-      return (newPosition / positionDenominator) < -(640 / positionDenominator) ? CANVAS_WIDTH : newPosition;
+      return (newPosition / positionDenominator) < (-640 / positionDenominator) ? CANVAS_WIDTH : newPosition;
     })
   );
 
   return (
-    <div 
+    <div
       style={{
         transform: `translateX(${position}px)`,
       }}
-      // className={`absolute`}
+    // className={`absolute`}
     >
       <div
         className={clsx(
