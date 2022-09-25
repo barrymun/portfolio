@@ -1,5 +1,5 @@
 import { Fragment, useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
 import Container from "@/components/Container";
@@ -133,8 +133,8 @@ function MobileNavigation(props) {
 }
 
 function NavItem({ href, children }) {
-  // let isActive = useRouter().pathname === href;
-  let isActive = true;
+  const location = useLocation();
+  let isActive = location.pathname === href;
 
   return (
     <li>
@@ -244,8 +244,8 @@ function Avatar({ large = false, className, ...props }) {
 }
 
 export default function Header() {
-  // let isHomePage = useRouter().pathname === "/";
-  let isHomePage = true;
+  const location = useLocation();
+  let isHomePage = location.pathname === "/";
 
   let headerRef = useRef();
   let avatarRef = useRef();
