@@ -1,12 +1,9 @@
-import Image from "next/future/image";
-import Link from "next/link";
-import { useRouter } from "next/router";
+import { Fragment, useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
-
-import { Container } from "@/components/Container";
-import avatarImage from "@/images/avatar.jpg";
-import { Fragment, useEffect, useRef } from "react";
+import Container from "@/components/Container";
+import avatarImage from "@/assets/avatar.jpeg";
 
 function CloseIcon(props) {
   return (
@@ -136,12 +133,13 @@ function MobileNavigation(props) {
 }
 
 function NavItem({ href, children }) {
-  let isActive = useRouter().pathname === href;
+  // let isActive = useRouter().pathname === href;
+  let isActive = true;
 
   return (
     <li>
       <Link
-        href={href}
+        to={href}
         className={clsx(
           "relative block px-3 py-2 transition",
           isActive
@@ -228,27 +226,26 @@ function AvatarContainer({ className, ...props }) {
 function Avatar({ large = false, className, ...props }) {
   return (
     <Link
-      href="/"
+      to="/"
       aria-label="Home"
       className={clsx(className, "pointer-events-auto")}
       {...props}
     >
-      <Image
+      <img
         src={avatarImage}
         alt=""
-        sizes={large ? "4rem" : "2.25rem"}
         className={clsx(
           "rounded-full bg-zinc-100 object-cover dark:bg-zinc-800",
           large ? "h-16 w-16" : "h-9 w-9"
         )}
-        priority
       />
     </Link>
   );
 }
 
 export default function Header() {
-  let isHomePage = useRouter().pathname === "/";
+  // let isHomePage = useRouter().pathname === "/";
+  let isHomePage = true;
 
   let headerRef = useRef();
   let avatarRef = useRef();

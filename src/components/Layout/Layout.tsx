@@ -1,4 +1,4 @@
-// import Header from "@/components/Header";
+import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Outlet } from "react-router";
 
@@ -11,7 +11,7 @@ export default function Layout() {
         </div>
       </div>
       <div className="relative">
-        {/* <Header /> */}
+        <Header />
         <main>
           <Outlet />
         </main>
