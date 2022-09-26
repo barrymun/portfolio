@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useRef } from "react";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { Link, useLocation } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
@@ -239,7 +240,7 @@ function Avatar(props: any) {
       className={clsx(className, "pointer-events-auto")}
       {...rest}
     >
-      <img
+      <LazyLoadImage
         src={avatarImage}
         alt=""
         className={clsx(

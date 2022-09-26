@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import imagePilot from '@/assets/pilot.jpeg';
 import Container from '@/components/Container';
 import GitHubIcon from "@/components/SocialIcons/GitHubIcon";
@@ -23,17 +24,6 @@ function SocialLink({ className, href, children, icon: Icon }: { className: stri
   )
 }
 
-function MailIcon(props: any) {
-  return (
-    <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
-      <path
-        fillRule="evenodd"
-        d="M6 5a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h12a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H6Zm.245 2.187a.75.75 0 0 0-.99 1.126l6.25 5.5a.75.75 0 0 0 .99 0l6.25-5.5a.75.75 0 0 0-.99-1.126L12 12.251 6.245 7.187Z"
-      />
-    </svg>
-  )
-}
-
 export default function About() {
   return (
     <>
@@ -48,7 +38,7 @@ export default function About() {
         <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
           <div className="lg:pl-20">
             <div className="max-w-xs px-2.5 lg:max-w-none">
-              <img
+              <LazyLoadImage
                 src={imagePilot}
                 alt=""
                 className="aspect-square rotate-3 rounded-2xl bg-zinc-100 object-cover dark:bg-zinc-800"

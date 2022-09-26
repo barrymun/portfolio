@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import clsx from "clsx";
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 import GitHubIcon from "@/components/SocialIcons/GitHubIcon";
 import LinkedInIcon from "@/components/SocialIcons/LinkedInIcon";
 import Button from "@/components/Button";
@@ -198,7 +199,7 @@ function Photo({ imageIndex }: { imageIndex: number }) {
         IMAGE_ROTATIONS[imageIndex % IMAGE_ROTATIONS.length]
       )}
     >
-      <img
+      <LazyLoadImage
         src={IMAGES[imageIndex]}
         alt=""
         className="absolute inset-0 h-full w-full object-cover"
