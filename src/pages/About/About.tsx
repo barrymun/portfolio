@@ -68,8 +68,8 @@ export default function About() {
                 Co-founded a VC funded technology company in 2017.
               </p>
               <p>
-                Being an aviation enthusiast I'm a pilot, and I also enjoy flying drones.
-                I enjoy swimming, running, photography and listening to music.
+                As an aviation enthusiast I'm a pilot (PPL), and I also enjoy flying drones.
+                Other hobbies include swimming, running, photography and listening to music.
               </p>
             </div>
           </div>
