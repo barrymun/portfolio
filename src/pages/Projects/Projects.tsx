@@ -1,29 +1,31 @@
 import Card from '@/components/Card'
 import SimpleLayout from '@/components/SimpleLayout'
-import logoAnimaginary from '@/images/logos/animaginary.svg'
 import logoReact from '@/assets/react.png';
 import logoSvelte from '@/assets/svelte.png';
+import { PROJECT_PORTFOLIO, PROJECT_TRAITLY, PROJECT_CHECKERS, URI_REL, URI_TARGET } from '@/constants';
+
+const LABEL_GITHUB = "github.com";
 
 const projects = [
   {
     name: 'Portfolio',
     description:
-      'Creating technology to empower civilians to explore space on their own terms.',
-    link: { href: 'http://planetaria.tech', label: 'planetaria.tech' },
+      'The structure of this website',
+    link: { href: PROJECT_PORTFOLIO, label: LABEL_GITHUB },
     logo: logoReact,
   },
   {
     name: 'Traitly',
     description:
-      'High performance web animation library, hand-written in optimized WASM.',
-    link: { href: '#', label: 'github.com' },
+      'Landing page for traitly.com',
+    link: { href: PROJECT_TRAITLY, label: LABEL_GITHUB },
     logo: logoReact,
   },
   {
     name: 'Checkers',
     description:
-      'Real-time video streaming library, optimized for interstellar transmission.',
-    link: { href: '#', label: 'github.com' },
+      'Building a classic game using a new and interesting frontend library',
+    link: { href: PROJECT_CHECKERS, label: LABEL_GITHUB },
     logo: logoSvelte,
   },
 ]
@@ -40,6 +42,10 @@ function LinkIcon(props: any) {
 }
 
 export default function Projects() {
+  const onClick = (href: string) => (e: React.MouseEvent<Element, MouseEvent>) => {
+    window.open(href, URI_TARGET, URI_REL);
+  }
+
   return (
     <>
       {/* <Head>
@@ -50,8 +56,8 @@ export default function Projects() {
         />
       </Head> */}
       <SimpleLayout
-        title="Things I’ve made trying to put my dent in the universe."
-        intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+        title="Some things I’ve worked on."
+        intro="I've contributed to many projects over the years, exposing myself to numerous technologies. Please feel free to check out the code for some of these below."
       >
         <ul
           role="list"
@@ -67,7 +73,13 @@ export default function Projects() {
                 />
               </div>
               <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
-                <Card.Link href={project.link.href}>{project.name}</Card.Link>
+                <div className="absolute -inset-y-6 -inset-x-4 z-0 scale-95 bg-zinc-50 opacity-0 transition group-hover:scale-100 group-hover:opacity-100 dark:bg-zinc-800/50 sm:-inset-x-6 sm:rounded-2xl" />
+                <button
+                  onClick={onClick(project.link.href)}
+                >
+                  <span className="absolute -inset-y-6 -inset-x-4 z-20 sm:-inset-x-6 sm:rounded-2xl" />
+                  <span className="relative z-10">{project.name}</span>
+                </button>
               </h2>
               <Card.Description>{project.description}</Card.Description>
               <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">

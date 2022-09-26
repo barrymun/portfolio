@@ -4,3 +4,6 @@ export const LINKEDIN_PROFILE_URI: string =
 export const GITHUB_PROFILE_URI: string = "https://github.com/barrymun";
 export const URI_TARGET: string = "_blank";
 export const URI_REL: string = "noopener noreferrer";
+export const PROJECT_PORTFOLIO: string = "https://github.com/barrymun/portfolio";
+export const PROJECT_TRAITLY: string = "https://github.com/barrymun/traitly";
+export const PROJECT_CHECKERS: string = "https://github.com/barrymun/checkers";
