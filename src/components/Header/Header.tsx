@@ -66,12 +66,13 @@ function MoonIcon(props: any) {
   );
 }
 
-function MobileNavItem({ href, children }: { href: string, children: React.ReactNode }) {
+function MobileNavItem({ href, onClick, children }: { href: string, onClick: React.MouseEventHandler<HTMLAnchorElement>, children: React.ReactNode }) {
   return (
     <li className="py-2">
       <Link
         to={href}
         aria-label={href}
+        onClick={onClick}
       >
         {children}
       </Link>
@@ -80,9 +81,15 @@ function MobileNavItem({ href, children }: { href: string, children: React.React
 }
 
 function MobileNavigation(props: any) {
+  const buttonRef = useRef<HTMLButtonElement>(null);
+  const closePopover = (e: React.MouseEvent<Element, MouseEvent>) => buttonRef.current?.click();
+  
   return (
     <Popover {...props}>
-      <Popover.Button className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
+      <Popover.Button
+        ref={buttonRef}
+        className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20"
+      >
         Menu
         <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
       </Popover.Button>
@@ -121,9 +128,9 @@ function MobileNavigation(props: any) {
             </div>
             <nav className="mt-6">
               <ul className="-my-2 divide-y divide-zinc-100 text-base text-zinc-800 dark:divide-zinc-100/5 dark:text-zinc-300">
-                <MobileNavItem href="/about">About</MobileNavItem>
-                <MobileNavItem href="/projects">Projects</MobileNavItem>
-                <MobileNavItem href="/stack">Stack</MobileNavItem>
+                <MobileNavItem onClick={closePopover} href="/about">About</MobileNavItem>
+                <MobileNavItem onClick={closePopover} href="/projects">Projects</MobileNavItem>
+                <MobileNavItem onClick={closePopover} href="/stack">Stack</MobileNavItem>
               </ul>
             </nav>
           </Popover.Panel>
@@ -265,7 +272,7 @@ export default function Header() {
     }
 
     function updateHeaderStyles() {
-      let { top, height } = headerRef.current?.getBoundingClientRect() ?? {top: 0, height: 0};
+      let { top, height } = headerRef.current?.getBoundingClientRect() ?? { top: 0, height: 0 };
       let scrollY = clamp(
         window.scrollY,
         0,
@@ -370,7 +377,7 @@ export default function Header() {
             >
               <div
                 className="top-[var(--avatar-top,theme(spacing.3))] w-full"
-                // style={{ position: "var(--header-inner-position)" }}
+              // style={{ position: "var(--header-inner-position)" }}
               >
                 <div className="relative">
                   <AvatarContainer
@@ -393,7 +400,7 @@ export default function Header() {
         <div
           ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
-          // style={{ position: "var(--header-position)" }}
+        // style={{ position: "var(--header-position)" }}
         >
           <Container
             className="top-[var(--header-top,theme(spacing.6))] w-full"
