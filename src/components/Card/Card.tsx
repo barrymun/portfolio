@@ -15,16 +15,8 @@ function ChevronRightIcon(props: any) {
   );
 }
 
-export default function Card({
-  as: Component = "div",
-  className,
-  children,
-}: {
-  as: any;
-  Component: FC;
-  className: string;
-  children: React.ReactNode;
-}) {
+export default function Card(props: any) {
+  const {as: Component = "div", className, children, ...rest} = props;
   return (
     <Component
       className={clsx(className, "group relative flex flex-col items-start")}
@@ -35,9 +27,11 @@ export default function Card({
 }
 
 Card.Link = function CardLink({
+  href,
   children,
   ...props
 }: {
+  href: string,
   children: React.ReactNode;
 }) {
   return (

@@ -1,4 +1,4 @@
-import { Fragment, useEffect, useRef } from "react";
+import React, { Fragment, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Popover, Transition } from "@headlessui/react";
 import clsx from "clsx";
@@ -66,12 +66,15 @@ function MoonIcon(props: any) {
   );
 }
 
-function MobileNavItem({ href, children }) {
+function MobileNavItem({ href, children }: { href: string, children: React.ReactNode }) {
   return (
-    <li>
-      <Popover.Button as={Link} href={href} className="block py-2">
+    <li className="py-2">
+      <Link
+        to={href}
+        aria-label={href}
+      >
         {children}
-      </Popover.Button>
+      </Link>
     </li>
   );
 }
@@ -130,7 +133,7 @@ function MobileNavigation(props: any) {
   );
 }
 
-function NavItem({ href, children }) {
+function NavItem({ href, children }: { href: string, children: React.ReactNode }) {
   const location = useLocation();
   let isActive = location.pathname === href;
 
@@ -201,31 +204,33 @@ function ModeToggle() {
   );
 }
 
-function clamp(number, a, b) {
+function clamp(number: number, a: number, b: number) {
   let min = Math.min(a, b);
   let max = Math.max(a, b);
   return Math.min(Math.max(number, min), max);
 }
 
-function AvatarContainer({ className, ...props }) {
+function AvatarContainer(props: any) {
+  const { classNamem, className, ...rest } = props;
   return (
     <div
       className={clsx(
         className,
         "h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:bg-zinc-800/90 dark:ring-white/10"
       )}
-      {...props}
+      {...rest}
     />
   );
 }
 
-function Avatar({ large = false, className, ...props }) {
+function Avatar(props: any) {
+  const { large = false, className, ...rest } = props;
   return (
     <Link
       to="/"
       aria-label="Home"
       className={clsx(className, "pointer-events-auto")}
-      {...props}
+      {...rest}
     >
       <img
         src={avatarImage}
@@ -243,24 +248,24 @@ export default function Header() {
   const location = useLocation();
   let isHomePage = location.pathname === "/";
 
-  let headerRef = useRef();
-  let avatarRef = useRef();
-  let isInitial = useRef(true);
+  let headerRef = useRef<HTMLDivElement>(null);
+  let avatarRef = useRef<HTMLDivElement>(null);
+  let isInitial = useRef<boolean>(true);
 
   useEffect(() => {
     let downDelay = avatarRef.current?.offsetTop ?? 0;
     let upDelay = 64;
 
-    function setProperty(property, value) {
+    function setProperty(property: string, value: string | null) {
       document.documentElement.style.setProperty(property, value);
     }
 
-    function removeProperty(property) {
+    function removeProperty(property: string) {
       document.documentElement.style.removeProperty(property);
     }
 
     function updateHeaderStyles() {
-      let { top, height } = headerRef.current.getBoundingClientRect();
+      let { top, height } = headerRef.current?.getBoundingClientRect() ?? {top: 0, height: 0};
       let scrollY = clamp(
         window.scrollY,
         0,
@@ -301,14 +306,14 @@ export default function Header() {
         return;
       }
 
-      let fromScale = 1;
-      let toScale = 36 / 64;
-      let fromX = 0;
-      let toX = 2 / 16;
+      let fromScale: number = 1;
+      let toScale: number = 36 / 64;
+      let fromX: number = 0;
+      let toX: number = 2 / 16;
 
-      let scrollY = downDelay - window.scrollY;
+      let scrollY: number = downDelay - window.scrollY;
 
-      let scale = (scrollY * (fromScale - toScale)) / downDelay + toScale;
+      let scale: number = (scrollY * (fromScale - toScale)) / downDelay + toScale;
       scale = clamp(scale, fromScale, toScale);
 
       let x = (scrollY * (fromX - toX)) / downDelay + toX;
@@ -324,7 +329,7 @@ export default function Header() {
       let borderTransform = `translate3d(${borderX}rem, 0, 0) scale(${borderScale})`;
 
       setProperty("--avatar-border-transform", borderTransform);
-      setProperty("--avatar-border-opacity", scale === toScale ? 1 : 0);
+      setProperty("--avatar-border-opacity", (scale === toScale ? 1 : 0).toString());
     }
 
     function updateStyles() {
@@ -338,7 +343,8 @@ export default function Header() {
     window.addEventListener("resize", updateStyles);
 
     return () => {
-      window.removeEventListener("scroll", updateStyles, { passive: true });
+      // window.removeEventListener("scroll", updateStyles, { passive: true });
+      window.removeEventListener("scroll", updateStyles);
       window.removeEventListener("resize", updateStyles);
     };
   }, [isHomePage]);
@@ -364,7 +370,7 @@ export default function Header() {
             >
               <div
                 className="top-[var(--avatar-top,theme(spacing.3))] w-full"
-                style={{ position: "var(--header-inner-position)" }}
+                // style={{ position: "var(--header-inner-position)" }}
               >
                 <div className="relative">
                   <AvatarContainer
@@ -387,7 +393,7 @@ export default function Header() {
         <div
           ref={headerRef}
           className="top-0 z-10 h-16 pt-6"
-          style={{ position: "var(--header-position)" }}
+          // style={{ position: "var(--header-position)" }}
         >
           <Container
             className="top-[var(--header-top,theme(spacing.6))] w-full"

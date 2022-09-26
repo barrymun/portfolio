@@ -1,11 +1,11 @@
-import clsx from 'clsx'
-import imagePilot from '@/assets/pilot.jpeg'
+import clsx from 'clsx';
+import imagePilot from '@/assets/pilot.jpeg';
 import Container from '@/components/Container';
 import GitHubIcon from "@/components/SocialIcons/GitHubIcon";
 import LinkedInIcon from "@/components/SocialIcons/LinkedInIcon";
 import { URI_TARGET, URI_REL, GITHUB_PROFILE_URI, LINKEDIN_PROFILE_URI } from '@/constants';
 
-function SocialLink({ className, href, children, icon: Icon }) {
+function SocialLink({ className, href, children, icon: Icon }: { className: string, href: string, children: any, icon: any }) {
   const onClick = (e: React.MouseEvent<Element, MouseEvent>) => {
     window.open(href, URI_TARGET, URI_REL);
   }
@@ -23,7 +23,7 @@ function SocialLink({ className, href, children, icon: Icon }) {
   )
 }
 
-function MailIcon(props) {
+function MailIcon(props: any) {
   return (
     <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
       <path

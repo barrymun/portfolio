@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef } from "react";
 import clsx from "clsx";
 import GitHubIcon from "@/components/SocialIcons/GitHubIcon";
 import LinkedInIcon from "@/components/SocialIcons/LinkedInIcon";
@@ -18,29 +18,6 @@ const IMAGES = [image1, image2, image3, image4];
 const IMAGE_ROTATIONS = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2'];
 // const CANVAS_WIDTH = window.innerWidth;
 // const SCROLL_SPEED = 4.3;
-
-// function MailIcon(props: any) {
-//   return (
-//     <svg
-//       viewBox="0 0 24 24"
-//       fill="none"
-//       strokeWidth="1.5"
-//       strokeLinecap="round"
-//       strokeLinejoin="round"
-//       aria-hidden="true"
-//       {...props}
-//     >
-//       <path
-//         d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-//         className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-//       />
-//       <path
-//         d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-//         className="stroke-zinc-400 dark:stroke-zinc-500"
-//       />
-//     </svg>
-//   );
-// }
 
 function BriefcaseIcon(props: any) {
   return (
@@ -98,8 +75,16 @@ function SocialLink({
   );
 }
 
+interface Role {
+  company: string,
+  title: string,
+  logo: string,
+  start: string | any,
+  end: string | any,
+}
+
 function Resume() {
-  let resume = [
+  let RESUME: Role[] = [
     {
       company: "Traitly",
       title: "Co-founder & Lead fullstack engineer",
@@ -133,7 +118,7 @@ function Resume() {
         <span className="ml-3">Work</span>
       </h2>
       <ol className="mt-6 space-y-4">
-        {resume.map((role, roleIndex: number) => (
+        {RESUME.map((role: Role, roleIndex: number) => (
           <li key={roleIndex} className="flex gap-4">
             <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
               <img src={role.logo} alt="" className="h-7 w-7 rounded-full" />
@@ -150,8 +135,7 @@ function Resume() {
               <dt className="sr-only">Date</dt>
               <dd
                 className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
-                aria-label={`${role.start.label ?? role.start} until ${role.end.label ?? role.end
-                  }`}
+                aria-label={`${role.start.label ?? role.start} until ${role.end.label ?? role.end}`}
               >
                 <time dateTime={role.start.dateTime ?? role.start}>
                   {role.start.label ?? role.start}
@@ -176,7 +160,7 @@ function Resume() {
 }
 
 const useAnimationFrame = (callback: Function) => {
-  const requestRef = useRef();
+  const requestRef = useRef<number>(0);
 
   const animate = () => {
     callback();
