@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Container from "@/components/Container";
 
-function NavLink({ to, children }: {to: string, children: React.ReactNode}) {
+function NavLink({ to, children }: { to: string, children: React.ReactNode }) {
   return (
     <Link
       to={to}
@@ -21,11 +21,9 @@ export default function Footer() {
           <Container.Inner>
             <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
               <div className="flex gap-6 text-sm font-medium text-zinc-800 dark:text-zinc-200">
-                <Link to="/about">About</Link>
-                {/* <NavLink to="/about">About</NavLink>
+                <NavLink to="/about">About</NavLink>
                 <NavLink to="/projects">Projects</NavLink>
-                <NavLink to="/speaking">Speaking</NavLink>
-                <NavLink to="/uses">Uses</NavLink> */}
+                <NavLink to="/stack">Stack</NavLink>
               </div>
               <p className="text-sm text-zinc-400 dark:text-zinc-500">
                 &copy; {new Date().getFullYear()} Neil Murphy
