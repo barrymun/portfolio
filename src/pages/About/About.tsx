@@ -69,7 +69,7 @@ export default function About() {
               </p>
               <p>
                 Being an aviation enthusiast I'm a pilot, and I also enjoy flying drones.
-                I also enjoy swimming, running and listening to music.
+                I enjoy swimming, running and listening to music.
               </p>
             </div>
           </div>
