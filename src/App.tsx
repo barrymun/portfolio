@@ -1,7 +1,7 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Layout from "@/components/Layout";
-import Loading from "@/components/Loading";
+import Fallback from "@/components/Fallback";
 import Error from "@/pages/Error"; // lazy loading not required here
 
 const Home = React.lazy(() => import("@/pages/Home"));
@@ -15,7 +15,7 @@ export default function App() {
         <Route
           index
           element={
-            <React.Suspense fallback={<Loading />}>
+            <React.Suspense fallback={<Fallback />}>
               <Home />
             </React.Suspense>
           }
@@ -23,7 +23,7 @@ export default function App() {
         <Route
           path="about"
           element={
-            <React.Suspense fallback={<Loading />}>
+            <React.Suspense fallback={<Fallback />}>
               <About />
             </React.Suspense>
           }
@@ -31,7 +31,7 @@ export default function App() {
         {/* <Route
           path="dashboard/*"
           element={
-            <React.Suspense fallback={<>...</>}>
+            <React.Suspense fallback={<Fallback />}>
               <Dashboard />
             </React.Suspense>
           }
